@@ -1,0 +1,274 @@
+@startuml
+participant Actor
+Actor -> Application : main
+activate Application
+Application -> AccountService : createAccount
+activate AccountService
+AccountService -> AccountServiceImpl : createAccount
+activate AccountServiceImpl
+AccountServiceImpl -> AccountDAO : saveAccount
+activate AccountDAO
+AccountDAO -> AccountDAOImpl : saveAccount
+activate AccountDAOImpl
+AccountDAOImpl --> AccountDAO
+deactivate AccountDAOImpl
+AccountDAO --> AccountServiceImpl
+deactivate AccountDAO
+AccountServiceImpl -> AccountServiceImpl : sendNotification
+activate AccountServiceImpl
+AccountServiceImpl -> Observer : update
+activate Observer
+Observer --> AccountServiceImpl
+deactivate Observer
+AccountServiceImpl --> AccountServiceImpl
+deactivate AccountServiceImpl
+AccountServiceImpl --> AccountService
+deactivate AccountServiceImpl
+AccountService --> Application
+deactivate AccountService
+Application -> AccountService : createAccount
+activate AccountService
+AccountService -> AccountServiceImpl : createAccount
+activate AccountServiceImpl
+AccountServiceImpl -> AccountDAO : saveAccount
+activate AccountDAO
+AccountDAO -> AccountDAOImpl : saveAccount
+activate AccountDAOImpl
+AccountDAOImpl --> AccountDAO
+deactivate AccountDAOImpl
+AccountDAO --> AccountServiceImpl
+deactivate AccountDAO
+AccountServiceImpl -> AccountServiceImpl : sendNotification
+activate AccountServiceImpl
+AccountServiceImpl -> Observer : update
+activate Observer
+Observer --> AccountServiceImpl
+deactivate Observer
+AccountServiceImpl --> AccountServiceImpl
+deactivate AccountServiceImpl
+AccountServiceImpl --> AccountService
+deactivate AccountServiceImpl
+AccountService --> Application
+deactivate AccountService
+Application -> AccountService : deposit
+activate AccountService
+AccountService -> AccountServiceImpl : deposit
+activate AccountServiceImpl
+AccountServiceImpl -> AccountDAO : loadAccount
+activate AccountDAO
+AccountDAO -> AccountDAOImpl : loadAccount
+activate AccountDAOImpl
+AccountDAOImpl --> AccountDAO
+deactivate AccountDAOImpl
+AccountDAO --> AccountServiceImpl
+deactivate AccountDAO
+AccountServiceImpl -> Account : deposit
+activate Account
+Account --> AccountServiceImpl
+deactivate Account
+AccountServiceImpl -> AccountDAO : updateAccount
+activate AccountDAO
+AccountDAO -> AccountDAOImpl : updateAccount
+activate AccountDAOImpl
+AccountDAOImpl -> AccountDAOImpl : loadAccount
+activate AccountDAOImpl
+AccountDAOImpl --> AccountDAOImpl
+deactivate AccountDAOImpl
+AccountDAOImpl --> AccountDAO
+deactivate AccountDAOImpl
+AccountDAO --> AccountServiceImpl
+deactivate AccountDAO
+AccountServiceImpl -> AccountServiceImpl : sendNotification
+activate AccountServiceImpl
+AccountServiceImpl -> Observer : update
+activate Observer
+Observer --> AccountServiceImpl
+deactivate Observer
+AccountServiceImpl --> AccountServiceImpl
+deactivate AccountServiceImpl
+AccountServiceImpl --> AccountService
+deactivate AccountServiceImpl
+AccountService --> Application
+deactivate AccountService
+Application -> AccountService : deposit
+activate AccountService
+AccountService -> AccountServiceImpl : deposit
+activate AccountServiceImpl
+AccountServiceImpl -> AccountDAO : loadAccount
+activate AccountDAO
+AccountDAO -> AccountDAOImpl : loadAccount
+activate AccountDAOImpl
+AccountDAOImpl --> AccountDAO
+deactivate AccountDAOImpl
+AccountDAO --> AccountServiceImpl
+deactivate AccountDAO
+AccountServiceImpl -> Account : deposit
+activate Account
+Account --> AccountServiceImpl
+deactivate Account
+AccountServiceImpl -> AccountDAO : updateAccount
+activate AccountDAO
+AccountDAO -> AccountDAOImpl : updateAccount
+activate AccountDAOImpl
+AccountDAOImpl -> AccountDAOImpl : loadAccount
+activate AccountDAOImpl
+AccountDAOImpl --> AccountDAOImpl
+deactivate AccountDAOImpl
+AccountDAOImpl --> AccountDAO
+deactivate AccountDAOImpl
+AccountDAO --> AccountServiceImpl
+deactivate AccountDAO
+AccountServiceImpl -> AccountServiceImpl : sendNotification
+activate AccountServiceImpl
+AccountServiceImpl -> Observer : update
+activate Observer
+Observer --> AccountServiceImpl
+deactivate Observer
+AccountServiceImpl --> AccountServiceImpl
+deactivate AccountServiceImpl
+AccountServiceImpl --> AccountService
+deactivate AccountServiceImpl
+AccountService --> Application
+deactivate AccountService
+Application -> AccountService : withdraw
+activate AccountService
+AccountService -> AccountServiceImpl : withdraw
+activate AccountServiceImpl
+AccountServiceImpl -> AccountDAO : loadAccount
+activate AccountDAO
+AccountDAO -> AccountDAOImpl : loadAccount
+activate AccountDAOImpl
+AccountDAOImpl --> AccountDAO
+deactivate AccountDAOImpl
+AccountDAO --> AccountServiceImpl
+deactivate AccountDAO
+AccountServiceImpl -> Account : withdraw
+activate Account
+Account --> AccountServiceImpl
+deactivate Account
+AccountServiceImpl -> AccountDAO : updateAccount
+activate AccountDAO
+AccountDAO -> AccountDAOImpl : updateAccount
+activate AccountDAOImpl
+AccountDAOImpl -> AccountDAOImpl : loadAccount
+activate AccountDAOImpl
+AccountDAOImpl --> AccountDAOImpl
+deactivate AccountDAOImpl
+AccountDAOImpl --> AccountDAO
+deactivate AccountDAOImpl
+AccountDAO --> AccountServiceImpl
+deactivate AccountDAO
+AccountServiceImpl -> AccountServiceImpl : sendNotification
+activate AccountServiceImpl
+AccountServiceImpl -> Observer : update
+activate Observer
+Observer --> AccountServiceImpl
+deactivate Observer
+AccountServiceImpl --> AccountServiceImpl
+deactivate AccountServiceImpl
+AccountServiceImpl --> AccountService
+deactivate AccountServiceImpl
+AccountService --> Application
+deactivate AccountService
+Application -> AccountService : deposit
+activate AccountService
+AccountService -> AccountServiceImpl : deposit
+activate AccountServiceImpl
+AccountServiceImpl -> AccountDAO : loadAccount
+activate AccountDAO
+AccountDAO -> AccountDAOImpl : loadAccount
+activate AccountDAOImpl
+AccountDAOImpl --> AccountDAO
+deactivate AccountDAOImpl
+AccountDAO --> AccountServiceImpl
+deactivate AccountDAO
+AccountServiceImpl -> Account : deposit
+activate Account
+Account --> AccountServiceImpl
+deactivate Account
+AccountServiceImpl -> AccountDAO : updateAccount
+activate AccountDAO
+AccountDAO -> AccountDAOImpl : updateAccount
+activate AccountDAOImpl
+AccountDAOImpl -> AccountDAOImpl : loadAccount
+activate AccountDAOImpl
+AccountDAOImpl --> AccountDAOImpl
+deactivate AccountDAOImpl
+AccountDAOImpl --> AccountDAO
+deactivate AccountDAOImpl
+AccountDAO --> AccountServiceImpl
+deactivate AccountDAO
+AccountServiceImpl -> AccountServiceImpl : sendNotification
+activate AccountServiceImpl
+AccountServiceImpl -> Observer : update
+activate Observer
+Observer --> AccountServiceImpl
+deactivate Observer
+AccountServiceImpl --> AccountServiceImpl
+deactivate AccountServiceImpl
+AccountServiceImpl --> AccountService
+deactivate AccountServiceImpl
+AccountService --> Application
+deactivate AccountService
+Application -> AccountService : transferFunds
+activate AccountService
+AccountService -> AccountServiceImpl : transferFunds
+activate AccountServiceImpl
+AccountServiceImpl -> AccountDAO : loadAccount
+activate AccountDAO
+AccountDAO -> AccountDAOImpl : loadAccount
+activate AccountDAOImpl
+AccountDAOImpl --> AccountDAO
+deactivate AccountDAOImpl
+AccountDAO --> AccountServiceImpl
+deactivate AccountDAO
+AccountServiceImpl -> AccountDAO : loadAccount
+activate AccountDAO
+AccountDAO -> AccountDAOImpl : loadAccount
+activate AccountDAOImpl
+AccountDAOImpl --> AccountDAO
+deactivate AccountDAOImpl
+AccountDAO --> AccountServiceImpl
+deactivate AccountDAO
+AccountServiceImpl -> Account : transferFunds
+activate Account
+Account --> AccountServiceImpl
+deactivate Account
+AccountServiceImpl -> AccountDAO : updateAccount
+activate AccountDAO
+AccountDAO -> AccountDAOImpl : updateAccount
+activate AccountDAOImpl
+AccountDAOImpl -> AccountDAOImpl : loadAccount
+activate AccountDAOImpl
+AccountDAOImpl --> AccountDAOImpl
+deactivate AccountDAOImpl
+AccountDAOImpl --> AccountDAO
+deactivate AccountDAOImpl
+AccountDAO --> AccountServiceImpl
+deactivate AccountDAO
+AccountServiceImpl -> AccountDAO : updateAccount
+activate AccountDAO
+AccountDAO -> AccountDAOImpl : updateAccount
+activate AccountDAOImpl
+AccountDAOImpl -> AccountDAOImpl : loadAccount
+activate AccountDAOImpl
+AccountDAOImpl --> AccountDAOImpl
+deactivate AccountDAOImpl
+AccountDAOImpl --> AccountDAO
+deactivate AccountDAOImpl
+AccountDAO --> AccountServiceImpl
+deactivate AccountDAO
+AccountServiceImpl -> AccountServiceImpl : sendNotification
+activate AccountServiceImpl
+AccountServiceImpl -> Observer : update
+activate Observer
+Observer --> AccountServiceImpl
+deactivate Observer
+AccountServiceImpl --> AccountServiceImpl
+deactivate AccountServiceImpl
+AccountServiceImpl --> AccountService
+deactivate AccountServiceImpl
+AccountService --> Application
+deactivate AccountService
+return
+@enduml

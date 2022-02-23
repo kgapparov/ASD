@@ -2,7 +2,7 @@ package edu.mum.cs.cs525.labs.lab2;
 
 import java.util.Collection;
 
-public interface AccountService {
+public interface AccountService extends StateNotifyer{
     Account createAccount(String accountNumber, String customerName);
     Account getAccount(String accountNumber);
     Collection<Account> getAllAccounts();

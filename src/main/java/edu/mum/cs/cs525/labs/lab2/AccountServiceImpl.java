@@ -1,9 +1,13 @@
 package edu.mum.cs.cs525.labs.lab2;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
-public class AccountServiceImpl implements AccountService {
+public class AccountServiceImpl implements AccountService{
 	private AccountDAO accountDAO;
+
+	private List<Observer> observers = new ArrayList<>();
 	
 	public AccountServiceImpl(){
 		accountDAO = new AccountDAOImpl();
@@ -15,7 +19,8 @@ public class AccountServiceImpl implements AccountService {
 		account.setCustomer(customer);
 		
 		accountDAO.saveAccount(account);
-		
+
+		sendNotification(account, ActionType.CREATEACCOUNT);
 		return account;
 	}
 
@@ -24,10 +29,13 @@ public class AccountServiceImpl implements AccountService {
 		account.deposit(amount);
 		
 		accountDAO.updateAccount(account);
+
+		sendNotification(account, ActionType.DEPOSIT);
 	}
 
 	public Account getAccount(String accountNumber) {
 		Account account = accountDAO.loadAccount(accountNumber);
+		sendNotification(account, ActionType.CHECKACCOUNT);
 		return account;
 	}
 
@@ -39,6 +47,8 @@ public class AccountServiceImpl implements AccountService {
 		Account account = accountDAO.loadAccount(accountNumber);
 		account.withdraw(amount);
 		accountDAO.updateAccount(account);
+
+		sendNotification(account , ActionType.WITHDRAW);
 	}
 
 
@@ -49,5 +59,23 @@ public class AccountServiceImpl implements AccountService {
 		fromAccount.transferFunds(toAccount, amount, description);
 		accountDAO.updateAccount(fromAccount);
 		accountDAO.updateAccount(toAccount);
+		sendNotification(fromAccount, ActionType.TRANSFER);
+	}
+
+	@Override
+	public void register(Observer o) {
+		observers.add(o);
+	}
+
+	@Override
+	public void remove(Observer o) {
+		remove(o);
+	}
+
+	@Override
+	public void sendNotification(Account account, ActionType action) {
+		for (Observer o : observers) {
+			o.update(account, action);
+		}
 	}
 }

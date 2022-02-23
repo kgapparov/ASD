@@ -3,6 +3,9 @@ package edu.mum.cs.cs525.labs.lab2;
 public class Application {
 	public static void main(String[] args) {
 		AccountService accountService = new AccountServiceImpl();
+		Logger theLogger = new Logger(accountService);
+		SMSSender smsSender = new SMSSender(accountService);
+		EmailSender emailSender = new EmailSender(accountService);
 
 		// create 2 accounts;
 		accountService.createAccount("1263862", "Frank Brown");

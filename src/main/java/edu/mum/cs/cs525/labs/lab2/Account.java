@@ -1,14 +1,17 @@
 package edu.mum.cs.cs525.labs.lab2;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 
 public class Account {
 	private Customer customer;
 
 	private String accountNumber;
 
+	private List<Observer> observers = new ArrayList<>();
 	private List<AccountEntry> entryList = new ArrayList<AccountEntry>();
 
 	public Account(String accountNumber) {
