@@ -1,0 +1,63 @@
+@startuml
+class Application{
+    +main()
+}
+interface AccountService{
+    +createAccount()
+    +deposit()
+    +withdrow()
+    +transferFunds()
+    +getAllAccounts()
+    +getAccount()
+}
+class AccountDao{
+    +saveAccount()
+    +updateAccount()
+    +loadAccount()
+    +getAccounts()
+}
+class Account{
+    +accountNumber
+    +interestAdder
+    +coulculateInterest
+}
+
+class SavingAccount
+class CheckingAccount
+class Customer {
+    +name
+}
+
+class AccountEntry {
+    +date
+    +amount
+    +description
+    +fromAccountNumber
+    +fromPersonName
+}
+'Adding interest interface
+interface InterestCalculator {
+    +getInterest()
+}
+
+class MainInterest{
+    +interestRange
+    +interestValue
+    +getInterest
+}
+class SavingInterest {
+}
+class CheckingInterest {
+}
+Application --> AccountService
+AccountService --> AccountDao
+AccountService ..> Account
+Account --> Customer : belongs
+Account *- AccountEntry: has *
+SavingAccount --|> Account
+CheckingAccount --|> Account
+MainInterest ..|> InterestCalculator
+CheckingInterest --|> MainInterest
+SavingInterest --|> MainInterest
+Account --> InterestCalculator
+@enduml
