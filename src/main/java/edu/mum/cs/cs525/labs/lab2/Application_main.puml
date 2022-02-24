@@ -2,10 +2,62 @@
 participant Actor
 Actor -> Application : main
 activate Application
+Application -> AccountServiceImpl : new
+activate AccountServiceImpl
+AccountServiceImpl --> Application
+deactivate AccountServiceImpl
+Application -> Logger : new
+activate Logger
+Logger -> StateNotifyer : register
+activate StateNotifyer
+StateNotifyer -> AccountServiceImpl : register
+activate AccountServiceImpl
+AccountServiceImpl --> StateNotifyer
+deactivate AccountServiceImpl
+StateNotifyer --> Logger
+deactivate StateNotifyer
+Logger --> Application
+deactivate Logger
+Application -> SMSSender : new
+activate SMSSender
+SMSSender -> StateNotifyer : register
+activate StateNotifyer
+StateNotifyer -> AccountServiceImpl : register
+activate AccountServiceImpl
+AccountServiceImpl --> StateNotifyer
+deactivate AccountServiceImpl
+StateNotifyer --> SMSSender
+deactivate StateNotifyer
+SMSSender --> Application
+deactivate SMSSender
+Application -> EmailSender : new
+activate EmailSender
+EmailSender -> StateNotifyer : register
+activate StateNotifyer
+StateNotifyer -> AccountServiceImpl : register
+activate AccountServiceImpl
+AccountServiceImpl --> StateNotifyer
+deactivate AccountServiceImpl
+StateNotifyer --> EmailSender
+deactivate StateNotifyer
+EmailSender --> Application
+deactivate EmailSender
 Application -> AccountService : createAccount
 activate AccountService
 AccountService -> AccountServiceImpl : createAccount
 activate AccountServiceImpl
+AccountServiceImpl -> Account : new
+activate Account
+Account --> AccountServiceImpl
+deactivate Account
+AccountServiceImpl -> Customer : new
+activate Customer
+Customer --> AccountServiceImpl
+deactivate Customer
+AccountServiceImpl -> Account : setCustomer
+activate Account
+Account --> AccountServiceImpl
+deactivate Account
 AccountServiceImpl -> AccountDAO : saveAccount
 activate AccountDAO
 AccountDAO -> AccountDAOImpl : saveAccount
@@ -30,6 +82,18 @@ Application -> AccountService : createAccount
 activate AccountService
 AccountService -> AccountServiceImpl : createAccount
 activate AccountServiceImpl
+AccountServiceImpl -> Account : new
+activate Account
+Account --> AccountServiceImpl
+deactivate Account
+AccountServiceImpl -> Customer : new
+activate Customer
+Customer --> AccountServiceImpl
+deactivate Customer
+AccountServiceImpl -> Account : setCustomer
+activate Account
+Account --> AccountServiceImpl
+deactivate Account
 AccountServiceImpl -> AccountDAO : saveAccount
 activate AccountDAO
 AccountDAO -> AccountDAOImpl : saveAccount
@@ -58,20 +122,36 @@ AccountServiceImpl -> AccountDAO : loadAccount
 activate AccountDAO
 AccountDAO -> AccountDAOImpl : loadAccount
 activate AccountDAOImpl
+AccountDAOImpl -> Account : getAccountNumber
+activate Account
+Account --> AccountDAOImpl
+deactivate Account
 AccountDAOImpl --> AccountDAO
 deactivate AccountDAOImpl
 AccountDAO --> AccountServiceImpl
 deactivate AccountDAO
 AccountServiceImpl -> Account : deposit
 activate Account
+Account -> AccountEntry : new
+activate AccountEntry
+AccountEntry --> Account
+deactivate AccountEntry
 Account --> AccountServiceImpl
 deactivate Account
 AccountServiceImpl -> AccountDAO : updateAccount
 activate AccountDAO
 AccountDAO -> AccountDAOImpl : updateAccount
 activate AccountDAOImpl
+AccountDAOImpl -> Account : getAccountNumber
+activate Account
+Account --> AccountDAOImpl
+deactivate Account
 AccountDAOImpl -> AccountDAOImpl : loadAccount
 activate AccountDAOImpl
+AccountDAOImpl -> Account : getAccountNumber
+activate Account
+Account --> AccountDAOImpl
+deactivate Account
 AccountDAOImpl --> AccountDAOImpl
 deactivate AccountDAOImpl
 AccountDAOImpl --> AccountDAO
@@ -98,20 +178,36 @@ AccountServiceImpl -> AccountDAO : loadAccount
 activate AccountDAO
 AccountDAO -> AccountDAOImpl : loadAccount
 activate AccountDAOImpl
+AccountDAOImpl -> Account : getAccountNumber
+activate Account
+Account --> AccountDAOImpl
+deactivate Account
 AccountDAOImpl --> AccountDAO
 deactivate AccountDAOImpl
 AccountDAO --> AccountServiceImpl
 deactivate AccountDAO
 AccountServiceImpl -> Account : deposit
 activate Account
+Account -> AccountEntry : new
+activate AccountEntry
+AccountEntry --> Account
+deactivate AccountEntry
 Account --> AccountServiceImpl
 deactivate Account
 AccountServiceImpl -> AccountDAO : updateAccount
 activate AccountDAO
 AccountDAO -> AccountDAOImpl : updateAccount
 activate AccountDAOImpl
+AccountDAOImpl -> Account : getAccountNumber
+activate Account
+Account --> AccountDAOImpl
+deactivate Account
 AccountDAOImpl -> AccountDAOImpl : loadAccount
 activate AccountDAOImpl
+AccountDAOImpl -> Account : getAccountNumber
+activate Account
+Account --> AccountDAOImpl
+deactivate Account
 AccountDAOImpl --> AccountDAOImpl
 deactivate AccountDAOImpl
 AccountDAOImpl --> AccountDAO
@@ -138,20 +234,36 @@ AccountServiceImpl -> AccountDAO : loadAccount
 activate AccountDAO
 AccountDAO -> AccountDAOImpl : loadAccount
 activate AccountDAOImpl
+AccountDAOImpl -> Account : getAccountNumber
+activate Account
+Account --> AccountDAOImpl
+deactivate Account
 AccountDAOImpl --> AccountDAO
 deactivate AccountDAOImpl
 AccountDAO --> AccountServiceImpl
 deactivate AccountDAO
 AccountServiceImpl -> Account : withdraw
 activate Account
+Account -> AccountEntry : new
+activate AccountEntry
+AccountEntry --> Account
+deactivate AccountEntry
 Account --> AccountServiceImpl
 deactivate Account
 AccountServiceImpl -> AccountDAO : updateAccount
 activate AccountDAO
 AccountDAO -> AccountDAOImpl : updateAccount
 activate AccountDAOImpl
+AccountDAOImpl -> Account : getAccountNumber
+activate Account
+Account --> AccountDAOImpl
+deactivate Account
 AccountDAOImpl -> AccountDAOImpl : loadAccount
 activate AccountDAOImpl
+AccountDAOImpl -> Account : getAccountNumber
+activate Account
+Account --> AccountDAOImpl
+deactivate Account
 AccountDAOImpl --> AccountDAOImpl
 deactivate AccountDAOImpl
 AccountDAOImpl --> AccountDAO
@@ -178,20 +290,36 @@ AccountServiceImpl -> AccountDAO : loadAccount
 activate AccountDAO
 AccountDAO -> AccountDAOImpl : loadAccount
 activate AccountDAOImpl
+AccountDAOImpl -> Account : getAccountNumber
+activate Account
+Account --> AccountDAOImpl
+deactivate Account
 AccountDAOImpl --> AccountDAO
 deactivate AccountDAOImpl
 AccountDAO --> AccountServiceImpl
 deactivate AccountDAO
 AccountServiceImpl -> Account : deposit
 activate Account
+Account -> AccountEntry : new
+activate AccountEntry
+AccountEntry --> Account
+deactivate AccountEntry
 Account --> AccountServiceImpl
 deactivate Account
 AccountServiceImpl -> AccountDAO : updateAccount
 activate AccountDAO
 AccountDAO -> AccountDAOImpl : updateAccount
 activate AccountDAOImpl
+AccountDAOImpl -> Account : getAccountNumber
+activate Account
+Account --> AccountDAOImpl
+deactivate Account
 AccountDAOImpl -> AccountDAOImpl : loadAccount
 activate AccountDAOImpl
+AccountDAOImpl -> Account : getAccountNumber
+activate Account
+Account --> AccountDAOImpl
+deactivate Account
 AccountDAOImpl --> AccountDAOImpl
 deactivate AccountDAOImpl
 AccountDAOImpl --> AccountDAO
@@ -218,6 +346,10 @@ AccountServiceImpl -> AccountDAO : loadAccount
 activate AccountDAO
 AccountDAO -> AccountDAOImpl : loadAccount
 activate AccountDAOImpl
+AccountDAOImpl -> Account : getAccountNumber
+activate Account
+Account --> AccountDAOImpl
+deactivate Account
 AccountDAOImpl --> AccountDAO
 deactivate AccountDAOImpl
 AccountDAO --> AccountServiceImpl
@@ -226,20 +358,68 @@ AccountServiceImpl -> AccountDAO : loadAccount
 activate AccountDAO
 AccountDAO -> AccountDAOImpl : loadAccount
 activate AccountDAOImpl
+AccountDAOImpl -> Account : getAccountNumber
+activate Account
+Account --> AccountDAOImpl
+deactivate Account
 AccountDAOImpl --> AccountDAO
 deactivate AccountDAOImpl
 AccountDAO --> AccountServiceImpl
 deactivate AccountDAO
 AccountServiceImpl -> Account : transferFunds
 activate Account
+Account -> Account : getAccountNumber
+activate Account
+Account --> Account
+deactivate Account
+Account -> Account : getCustomer
+activate Account
+Account --> Account
+deactivate Account
+Account -> Customer : getName
+activate Customer
+Customer --> Account
+deactivate Customer
+Account -> AccountEntry : new
+activate AccountEntry
+AccountEntry --> Account
+deactivate AccountEntry
+Account -> Account : getAccountNumber
+activate Account
+Account --> Account
+deactivate Account
+Account -> Account : getCustomer
+activate Account
+Account --> Account
+deactivate Account
+Account -> Customer : getName
+activate Customer
+Customer --> Account
+deactivate Customer
+Account -> AccountEntry : new
+activate AccountEntry
+AccountEntry --> Account
+deactivate AccountEntry
+Account -> Account : addEntry
+activate Account
+Account --> Account
+deactivate Account
 Account --> AccountServiceImpl
 deactivate Account
 AccountServiceImpl -> AccountDAO : updateAccount
 activate AccountDAO
 AccountDAO -> AccountDAOImpl : updateAccount
 activate AccountDAOImpl
+AccountDAOImpl -> Account : getAccountNumber
+activate Account
+Account --> AccountDAOImpl
+deactivate Account
 AccountDAOImpl -> AccountDAOImpl : loadAccount
 activate AccountDAOImpl
+AccountDAOImpl -> Account : getAccountNumber
+activate Account
+Account --> AccountDAOImpl
+deactivate Account
 AccountDAOImpl --> AccountDAOImpl
 deactivate AccountDAOImpl
 AccountDAOImpl --> AccountDAO
@@ -250,8 +430,16 @@ AccountServiceImpl -> AccountDAO : updateAccount
 activate AccountDAO
 AccountDAO -> AccountDAOImpl : updateAccount
 activate AccountDAOImpl
+AccountDAOImpl -> Account : getAccountNumber
+activate Account
+Account --> AccountDAOImpl
+deactivate Account
 AccountDAOImpl -> AccountDAOImpl : loadAccount
 activate AccountDAOImpl
+AccountDAOImpl -> Account : getAccountNumber
+activate Account
+Account --> AccountDAOImpl
+deactivate Account
 AccountDAOImpl --> AccountDAOImpl
 deactivate AccountDAOImpl
 AccountDAOImpl --> AccountDAO
@@ -270,5 +458,57 @@ AccountServiceImpl --> AccountService
 deactivate AccountServiceImpl
 AccountService --> Application
 deactivate AccountService
+Application -> AccountService : getAllAccounts
+activate AccountService
+AccountService -> AccountServiceImpl : getAllAccounts
+activate AccountServiceImpl
+AccountServiceImpl -> AccountDAO : getAccounts
+activate AccountDAO
+AccountDAO -> AccountDAOImpl : getAccounts
+activate AccountDAOImpl
+AccountDAOImpl --> AccountDAO
+deactivate AccountDAOImpl
+AccountDAO --> AccountServiceImpl
+deactivate AccountDAO
+AccountServiceImpl --> AccountService
+deactivate AccountServiceImpl
+AccountService --> Application
+deactivate AccountService
+Application -> Account : getCustomer
+activate Account
+Account --> Application
+deactivate Account
+Application -> Account : getAccountNumber
+activate Account
+Account --> Application
+deactivate Account
+Application -> Customer : getName
+activate Customer
+Customer --> Application
+deactivate Customer
+Application -> Account : getEntryList
+activate Account
+Account --> Application
+deactivate Account
+Application -> AccountEntry : getDate
+activate AccountEntry
+AccountEntry --> Application
+deactivate AccountEntry
+Application -> AccountEntry : getDescription
+activate AccountEntry
+AccountEntry --> Application
+deactivate AccountEntry
+Application -> AccountEntry : getAmount
+activate AccountEntry
+AccountEntry --> Application
+deactivate AccountEntry
+Application -> Account : getBalance
+activate Account
+Account -> AccountEntry : getAmount
+activate AccountEntry
+AccountEntry --> Account
+deactivate AccountEntry
+Account --> Application
+deactivate Account
 return
 @enduml
