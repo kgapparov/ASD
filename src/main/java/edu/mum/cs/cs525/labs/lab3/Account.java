@@ -13,7 +13,13 @@ public class Account {
 
 	private double interestRate = 0;
 
-	protected InterestCalculator interest;
+	public void setInterest(InterestCalculator interest) {
+		this.interest = interest;
+	}
+	public InterestCalculator getInterest() {
+		return this.interest;
+	}
+	private  InterestCalculator interest;
 
 	public Account(String accountNumber) {
 		this.accountNumber = accountNumber;

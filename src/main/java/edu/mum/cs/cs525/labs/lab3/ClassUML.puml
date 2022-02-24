@@ -43,8 +43,27 @@ interface InterestCalculator {
 class MainInterest{
     +interestRange
     +interestValue
-    +getInterest
+    +{abstract}getInterest
 }
+class InterestDecorator{
+    +InterestCalculator;
+    +{abstract}getInterest;
+}
+InterestDecorator --|> InterestCalculator
+InterestDecorator --> InterestCalculator
+class P1 {
+    +getInterest()
+}
+class P2{
+            +getInterest()
+        }
+class P3{
+            +getInterest()
+        }
+P1 --|> InterestDecorator
+P2 --|> InterestDecorator
+P3 --|> InterestDecorator
+
 class SavingInterest {
 }
 class CheckingInterest {
@@ -55,7 +74,6 @@ class EmailSender{}
 interface StateNotificator {
     +register()
     +remove()
-
 }
 interface Obsoerver{}
 Application --> AccountService
