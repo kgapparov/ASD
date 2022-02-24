@@ -68,14 +68,6 @@ class SavingInterest {
 }
 class CheckingInterest {
 }
-class Logger{}
-class SMSSender{}
-class EmailSender{}
-interface StateNotificator {
-    +register()
-    +remove()
-}
-interface Obsoerver{}
 Application --> AccountService
 AccountService --> AccountDao
 AccountService ..> Account

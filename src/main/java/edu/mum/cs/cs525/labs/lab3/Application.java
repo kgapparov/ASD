@@ -19,7 +19,7 @@ public class Application {
 
 		for (Account account : accountService.getAllAccounts()) {
 			Customer customer = account.getCustomer();
-			account.setInterest(new P2(account.getInterest()));
+			account.setInterest(new P3(account.getInterest()));
 			System.out.println("Statement for Account: " + account.getAccountNumber());
 			System.out.println("Account Holder: " + customer.getName());
 			

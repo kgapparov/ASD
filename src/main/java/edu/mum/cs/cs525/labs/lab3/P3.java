@@ -7,6 +7,6 @@ public class P3 extends InterestDecorator{
 
     @Override
     public double getInterest(double balance) {
-        return 3.0;
+        return 3.0 + interestCalculator.getInterest(balance);
     }
 }
