@@ -1,0 +1,55 @@
+@startuml
+class Application{
+    +main()
+}
+interface AccountService{
+    +createAccount()
+    +deposit()
+    +withdrow()
+    +transferFunds()
+    +getAllAccounts()
+    +getAccount()
+}
+interface AccountDao{
+    +saveAccount()
+    +updateAccount()
+    +loadAccount()
+    +getAccounts()
+}
+class Account{
+    +accountNumber
+    +interestAdder
+    +coulculateInterest
+}
+class Customer {
+    +name
+}
+
+class AccountEntry {
+    +date
+    +amount
+    +description
+    +fromAccountNumber
+    +fromPersonName
+}
+abstract class ServiceFactory {
+    +{abstract}createAccountDao()
+}
+enum EnvironmentType{
+    PRODUCT
+    TEST
+}
+
+ServiceFactory --> EnvironmentType
+AccountDaoImpl ..|> AccountDao
+MockAccountDaoImpl ..|> AccountDao
+AccountServiceImpl ..|> AccountService
+Application --> AccountService
+AccountService ..> Account
+Account --> Customer : belongs
+Account *- AccountEntry: has *
+AccountServiceImpl --|> ServiceFactory
+ServiceFactory --> AccountDao
+CustomerServiceImpl --|> ServiceFactory
+
+@enduml
