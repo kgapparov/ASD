@@ -2,7 +2,7 @@ package edu.mum.cs.cs525.labs.lab4;
 
 import java.util.Collection;
 
-public class AccountServiceImpl extends ServiceFactory implements AccountService {
+public class AccountServiceImpl extends AccountDAOFactory implements AccountService {
 
 	AccountServiceImpl(EnvironmentType type){
 		super();
@@ -12,9 +12,17 @@ public class AccountServiceImpl extends ServiceFactory implements AccountService
 	AccountServiceImpl(){
 	}
 
-	@Override
 	public void setEnvironment(EnvironmentType type) {
 		super.setAccountDao(type);
+	}
+
+	public AccountServiceImpl (Subject subject){
+		subject.register(this);
+	}
+
+	@Override
+	public void update(EnvironmentType type) {
+		setEnvironment(type);
 	}
 
 	@Override

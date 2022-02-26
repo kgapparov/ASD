@@ -32,15 +32,34 @@ class AccountEntry {
     +fromAccountNumber
     +fromPersonName
 }
-abstract class ServiceFactory {
+abstract class AccountDAOFactory {
     +{abstract}createAccountDao()
 }
-enum EnvironmentType{
-    PRODUCT
-    TEST
+
+interface CustomerService
+
+interface Subject {
+    +register(Observer o);
+    +remove(Observer o);
+    +setEnviroment(EnvironmentType type);
 }
 
-ServiceFactory --> EnvironmentType
+class Environment {
+     +register(Observer o);
+     +remove(Observer o);
+     +setEnviroment(EnvironmentType type);
+     +observer
+}
+interface Observer{
+    +update(EnvironmentType type)
+}
+
+AccountService ..|> Observer
+AccountService --> Environment
+CustomerService --> Environment
+CustomerService ..|> Observer
+Environment ..|> Subject
+Subject --|> Observer
 AccountDaoImpl ..|> AccountDao
 MockAccountDaoImpl ..|> AccountDao
 AccountServiceImpl ..|> AccountService
@@ -48,8 +67,10 @@ Application --> AccountService
 AccountService ..> Account
 Account --> Customer : belongs
 Account *- AccountEntry: has *
-AccountServiceImpl --|> ServiceFactory
-ServiceFactory --> AccountDao
-CustomerServiceImpl --|> ServiceFactory
+AccountServiceImpl --|> AccountDAOFactory
+AccountDAOFactory --> AccountDao
+CustomerServiceImpl ..|> CustomerService
+CustomerService --> Customer
+CustomerServiceImpl --|> AccountDAOFactory
 
 @enduml

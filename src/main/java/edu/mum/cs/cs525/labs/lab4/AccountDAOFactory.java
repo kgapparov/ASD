@@ -1,6 +1,6 @@
 package edu.mum.cs.cs525.labs.lab4;
 
-abstract public class ServiceFactory {
+abstract public class AccountDAOFactory {
     private AccountDAO accountDao;
 
     public void setAccountDao(EnvironmentType type) {

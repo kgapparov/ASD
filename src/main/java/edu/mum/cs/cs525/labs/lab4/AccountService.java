@@ -2,7 +2,7 @@ package edu.mum.cs.cs525.labs.lab4;
 
 import java.util.Collection;
 
-public interface AccountService {
+public interface AccountService extends Observer{
     void setEnvironment(EnvironmentType type);
     Account createAccount(String accountNumber, String customerName);
     Account getAccount(String accountNumber);
