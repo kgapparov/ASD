@@ -1,0 +1,39 @@
+@startuml
+class Application{
+    +main()
+}
+interface AccountService{
+    +createAccount()
+    +deposit()
+    +withdrow()
+    +transferFunds()
+    +getAllAccounts()
+    +getAccount()
+}
+class AccountDao{
+    +saveAccount()
+    +updateAccount()
+    +loadAccount()
+    +getAccounts()
+}
+class Account{
+    +accountNumber
+    +interestAdder
+    +coulculateInterest
+}
+
+class AccountEntry {
+    +date
+    +amount
+    +description
+    +fromAccountNumber
+    +fromPersonName
+}
+Application --> AccountService
+AccountService --> AccountDao
+AccountService ..> Account
+Account --> Customer : belongs
+Account *- AccountEntry: has *
+
+
+@enduml
