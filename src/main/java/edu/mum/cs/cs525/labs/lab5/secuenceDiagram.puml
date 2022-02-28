@@ -1,0 +1,65 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor Actor
+participant Application
+participant AccountServiceImpl
+participant AccountService
+participant Account
+participant Customer
+participant AccountDAO
+participant AccountDAOImpl
+participant DepositCommand
+participant WithdrawCommand
+participant Invoker
+
+Actor -> Application: 1 main
+Application -> AccountServiceImpl: 2 <<create>>
+AccountServiceImpl --> Application
+
+Application -> AccountService : 3. createAccount
+AccountService --> AccountServiceImpl : 4. createAccount
+AccountServiceImpl -> Account : 5. <<create>>
+Account --> AccountServiceImpl
+AccountServiceImpl -> Customer : 6. <<create>>
+Customer --> AccountServiceImpl
+AccountServiceImpl -> AccountDAO: 7. saveAccount
+AccountDAO -> AccountDAOImpl: 8 saveAccount
+AccountDAOImpl --> AccountDAO
+AccountDAO --> AccountServiceImpl
+
+'creating commands
+Application -> DepositCommand : 9. <<create>>
+DepositCommand --> Application
+Application -> DepositCommand: 10. setAmount
+DepositCommand --> Application
+Application -> DepositCommand: 11. setAccountNumber
+DepositCommand --> Application
+
+'creating WithDrawCommand
+Application -> WithdrawCommand : 12. <<create>>
+WithdrawCommand --> Application
+Application -> WithdrawCommand: 13. setAmount
+WithdrawCommand --> Application
+Application -> WithdrawCommand: 14. setAccountNumber
+WithdrawCommand --> Application
+
+Application -> Invoker : 15 <<create>>
+Invoker --> Application
+
+Application -> Invoker : 16 setCommand
+Invoker --> Application
+
+Application -> Invoker : 17 setCommand
+Invoker --> Application
+
+Application -> Invoker : 18 execute
+Invoker --> Application
+
+Application -> Invoker : 18 execute
+Invoker --> Application
+Application -> Invoker : 18 execute
+Invoker --> Application
+
+
+@enduml
