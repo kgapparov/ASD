@@ -5,9 +5,9 @@ public class Invoker {
     private Command theLastCommand;
 
     public Invoker() {
+        theLastCommand = new NoCommand();
         for (int i = 0; i < 3; i++) {
             commands[i] = new NoCommand();
-            theLastCommand = new NoCommand();
         }
     }
 
@@ -19,9 +19,11 @@ public class Invoker {
         commands[slot].execute();
         theLastCommand = commands[slot];
     }
+
     public void redo(){
         theLastCommand.redo();
     }
+
     public void undo() {
         theLastCommand.undo();
         theLastCommand = new NoCommand();
