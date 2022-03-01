@@ -51,7 +51,9 @@ public class Application {
 		transferCommand.setDescription("Internet service.");
 		transferCommand.setAmount(70.0);
 
-		//customize invoker
+		/**
+		 * Customizing your personal Invoker.
+		 */
 		Invoker invoker = new Invoker();
 		invoker.setCommand(0, holidayDepositCounter);
 		invoker.setCommand(2, transferCommand);
