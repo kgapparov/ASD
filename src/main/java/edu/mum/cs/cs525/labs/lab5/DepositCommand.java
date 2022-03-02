@@ -1,6 +1,7 @@
 package edu.mum.cs.cs525.labs.lab5;
 
 public class DepositCommand implements Command{
+
     private AccountService accountService;
 
     private double amount;
@@ -16,9 +17,11 @@ public class DepositCommand implements Command{
     public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
     }
+
     public void setAmount(double amount) {
         this.amount = amount;
     }
+
     @Override
     public void execute() {
         isExecuted = true;
