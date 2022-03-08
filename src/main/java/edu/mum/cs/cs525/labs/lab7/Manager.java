@@ -7,7 +7,7 @@ import java.util.function.Consumer;
 public class Manager extends Hire{
     private List<Hire> employees;
     @Override
-    public void execute(Consumer<Hire> action) {
+    public void execute(Consumer<? super Hire> action) {
         action.accept(this);
         for(Hire em : this.employees) {
             em.execute(action);
