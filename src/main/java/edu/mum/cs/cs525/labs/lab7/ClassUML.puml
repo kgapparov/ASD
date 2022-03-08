@@ -1,0 +1,10 @@
+@startuml
+class Employee
+class Hire {
+    +execute();
+}
+class Manager
+Employee --|> Hire
+Manager --|> Hire
+Manager --> Hire
+@enduml
