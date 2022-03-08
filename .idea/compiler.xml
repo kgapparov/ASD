@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="cs525-labs-skeleton" />
+        <module name="ASD" />
       </profile>
     </annotationProcessing>
   </component>
