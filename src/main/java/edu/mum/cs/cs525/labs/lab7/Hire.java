@@ -37,7 +37,7 @@ public abstract class Hire {
         this.salary = salary;
     }
 
-    public void execute(Consumer<Hire> action) {
+    public void execute(Consumer<? super Hire> action) {
         action.accept(this);
     }
 }
