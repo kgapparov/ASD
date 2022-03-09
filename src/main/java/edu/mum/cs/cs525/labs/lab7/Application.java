@@ -10,12 +10,15 @@ public class Application {
         Hire person2 = new Employee(1, "Employee1", 300.0);
 
         HireCounterAction counter = new HireCounterAction();
+        HireSalaryBudget budget = new HireSalaryBudget();
         manager1.setEmployees(person1);
         manager1.setEmployees(manager2);
         manager2.setEmployees(person2);
         manager1.execute(counter);
+        manager1.execute(budget);
 
         System.out.println(counter.getCount());
+        System.out.println(budget.getBudget());
 
     }
 }

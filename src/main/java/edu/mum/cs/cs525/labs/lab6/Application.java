@@ -1,8 +1,8 @@
 package edu.mum.cs.cs525.labs.lab6;
 
-import edu.mum.cs.cs525.labs.lab6.logger.LoggerAdapter;
-import edu.mum.cs.cs525.labs.lab6.logger.My4jLogger;
-import edu.mum.cs.cs525.labs.lab6.logger.MyLogger;
+import edu.mum.cs.cs525.labs.lab6.logger.LogLevel;
+import edu.mum.cs.cs525.labs.lab6.logger.Logger;
+import edu.mum.cs.cs525.labs.lab6.logger.LoggerUtils;
 
 public class Application {
 	public static void performTask (AccountService accountService) {
@@ -41,9 +41,12 @@ public class Application {
 
 	public static void main(String[] args) {
 		AccountServiceImpl accountService = new AccountServiceImpl();
-		//accountService.setLogger(new MyLogger());
-		accountService.setLogger(new LoggerAdapter(new My4jLogger()));
+		Logger logger = new LoggerUtils();
+		logger.log(LogLevel.ERROR, "Test");
+		logger.log(LogLevel.FATAL, "Test");
+		accountService.setLogger(logger);
 		performTask(accountService);
+
 	}
 
 }

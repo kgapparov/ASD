@@ -1,7 +1,7 @@
 package edu.mum.cs.cs525.labs.lab6;
 
 import edu.mum.cs.cs525.labs.lab6.logger.LogLevel;
-import edu.mum.cs.cs525.labs.lab6.logger.LoggerAdapter;
+import edu.mum.cs.cs525.labs.lab6.logger.LoggerUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
