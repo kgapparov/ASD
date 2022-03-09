@@ -1,0 +1,19 @@
+@startuml
+class Car
+interface State
+abstract class Gear
+class ParkingState
+class FirstGear
+class SecondtGear
+class ThirdGear
+class ForthGear
+class FifthGear
+ParkingState --|> Gear
+FirstGear --|> Gear
+SecondtGear --|> Gear
+ThirdGear --|> Gear
+ForthGear --|> Gear
+FifthGear --|> Gear
+Gear ..|> State
+Car --> State
+@enduml
