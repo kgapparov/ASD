@@ -1,0 +1,10 @@
+@startuml
+interface ComplexTaskService
+class ComplextTask
+class DynamicProxy
+class ProxyUtility
+class Application
+Application --> ProxyUtility
+ProxyUtility ..|> DynamicProxy
+DynamicProxy --> ComplexTaskService
+@enduml
