@@ -9,6 +9,6 @@ public class ComplexClass implements ComplextTaskService{
         System.out.println("Very complicated task");
     }
     public void veryNotComplicatedTask(){
-        System.out.println("Very complicated task");
+        System.out.println("Very Not complicated task");
     }
 }

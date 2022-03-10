@@ -7,4 +7,8 @@ public class ProxyUtility {
     public static <ComplexClassService> ComplexClassService getProxy(){
         return (ComplexClassService) Proxy.newProxyInstance(ComplextTaskService.class.getClassLoader(), ComplexClass.class.getInterfaces(), new DynamicProxy());
     }
+
+    public static <ComplexClassService> ComplexClassService getProxy2(){
+        return (ComplexClassService) Proxy.newProxyInstance(ComplextTaskService.class.getClassLoader(), MyNextComplextClass.class.getInterfaces(), new DynamicProxy());
+    }
 }
