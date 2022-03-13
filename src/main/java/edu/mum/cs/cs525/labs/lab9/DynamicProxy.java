@@ -10,14 +10,31 @@ public class DynamicProxy implements InvocationHandler {
         if (method.getName().startsWith("very")) {
             if (target == null) {
                 System.out.println("We are creating instance... Please wait");
-                target = new ComplexClass();
+
+                Thread runnerThread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            target = new ComplexClass();
+                            executeCondition(method, target);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                 });
+                runnerThread.start();
+            } else {
+               executeCondition(method, target);
             }
-            if (method.getName().startsWith("veryNot")) {
-                target.veryNotComplicatedTask();
-            }
-            target.veryComplicatedTask();
         }
 
         return null;
+    }
+
+    private void executeCondition(Method method, ComplextTaskService target) throws InterruptedException {
+        if (method.getName().startsWith("veryNot"))
+            target.veryNotComplicatedTask();
+        else
+            target.veryComplicatedTask();
     }
 }
